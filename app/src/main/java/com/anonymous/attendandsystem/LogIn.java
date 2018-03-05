@@ -43,10 +43,15 @@ public class LogIn extends Activity {
         SharedPreferences shared = getSharedPreferences("UserData" , Context.MODE_PRIVATE) ;
         SharedPreferences.Editor editor = shared.edit() ;
         try {
-            editor.putString("name" , userName.getText().toString()) ;
-            editor.putInt("id", Integer.parseInt(input.getText().toString()));
-            editor.apply();
-        }catch (NumberFormatException s){
+            if(input != null ) {
+                editor.putString("name", userName.getText().toString());
+                editor.putInt("id", Integer.parseInt(input.getText().toString()));
+                editor.apply();
+            }
+        }catch (NullPointerException e ){
+            Toast.makeText(this , "Error " ,Toast.LENGTH_LONG ).show();
+        }
+        catch (NumberFormatException s){
             Toast.makeText(this , "Error " ,Toast.LENGTH_LONG ).show();
         }
 
@@ -54,7 +59,7 @@ public class LogIn extends Activity {
     public void getData (){
        try {
            SharedPreferences shared = getSharedPreferences("UserData", Context.MODE_PRIVATE);
-           id = shared.getInt("id", 0);
+           id = shared.getInt("id", -1);
 
        }catch (Exception e){
            id = -1 ;

@@ -15,8 +15,6 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
     TextView tv_hint ;
-
-   ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +22,7 @@ public class MainActivity extends Activity {
 
         tv_hint = (TextView)findViewById(R.id.labelText);
         Intent intent = getIntent();
-        tv_hint.setText(intent.getIntExtra("id" , -1 ));
-
-
+        tv_hint.setText(" "+intent.getIntExtra("id" , -1 ));
 
     }
 
