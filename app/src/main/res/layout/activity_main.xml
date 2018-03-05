@@ -13,28 +13,6 @@
         android:layout_height="wrap_content"
         android:text="@string/label_text"
         android:id="@+id/labelText"/>
-    <EditText
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint"
-        android:id="@+id/input"
-        />
-
-    <Button
-        android:id="@+id/btnEnter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="saveId"
-        android:text="@string/button_text"
-        android:textSize="15sp" />
-
-    <Button
-        android:id="@+id/buttonGet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="getId"
-        android:text="getID" />
 
 
 </LinearLayout>
