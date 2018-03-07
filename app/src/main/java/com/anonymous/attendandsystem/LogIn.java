@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,52 +23,77 @@ import static android.R.id.message;
 public class LogIn extends Activity {
 
     private  int id  = -1 ;
+    private  String name ;
 
-    EditText input ;
-    EditText userName ;
-    ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        input = (EditText)findViewById(R.id.password) ;
-        userName = (EditText)findViewById(R.id.userName) ;
-        getData();
         setContentView(R.layout.log_in);
-        if (id > -1)
-           startNewActivity();
+        getData();
+        Log.v("LogIn"  ,"before if  " + id) ;
+        if (id != -1) {
+            if (name == "admin")
+                startNewActivity(1);
+            else
+                startNewActivity(0);
 
+        }
+        Log.v("LogIn"  ,"After if " + id) ;
     }
 
     public void saveData (View view ){
         SharedPreferences shared = getSharedPreferences("UserData" , Context.MODE_PRIVATE) ;
         SharedPreferences.Editor editor = shared.edit() ;
+        EditText input = (EditText)findViewById(R.id.password) ;
+        EditText userName = (EditText)findViewById(R.id.userName) ;
+
+        int n  = 0 ;
         try {
-            if(input != null ) {
-                editor.putString("name", userName.getText().toString());
-                editor.putInt("id", Integer.parseInt(input.getText().toString()));
+              name = userName.getText().toString() ;
+                editor.putString("name",name);
+                n = Integer.parseInt(input.getText().toString()) ;
+                id = n ;
+                Log.v("LogIn"  ,"n " + n) ;
+                editor.putInt("ID",n );
                 editor.apply();
-            }
+
+            //start activity
+            if (name == "admin")
+                startNewActivity(1) ;
+            else
+                startNewActivity(0);
+
         }catch (NullPointerException e ){
             Toast.makeText(this , "Error " ,Toast.LENGTH_LONG ).show();
         }
         catch (NumberFormatException s){
             Toast.makeText(this , "Error " ,Toast.LENGTH_LONG ).show();
         }
-
+       // Toast.makeText(this , "inSave " ,Toast.LENGTH_LONG ).show();
     }
     public void getData (){
        try {
+           Log.v("LogIn"  ," from get id is " + id) ;
            SharedPreferences shared = getSharedPreferences("UserData", Context.MODE_PRIVATE);
-           id = shared.getInt("id", -1);
+           id = shared.getInt("ID", -1);
+           name = shared.getString("name" , "") ;
 
+           Log.v("LogIn"  ," after get id is " + id) ;
        }catch (Exception e){
            id = -1 ;
+           name = "" ;
        }
     }
-    public void startNewActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
+    public void startNewActivity( int priority ){
+        Intent intent ;
+        if (priority  == 1 )
+            intent = new Intent(this,Admin.class);
+        else
+            intent = new Intent(this , Student.class) ;
+
         intent.putExtra("id", id);
+        intent.putExtra("name", name );
         startActivity(intent);
 
     }
