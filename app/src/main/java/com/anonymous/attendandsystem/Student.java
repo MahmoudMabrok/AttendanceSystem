@@ -21,10 +21,8 @@ public class Student  extends Activity  {
         TextView   tv_hint = (TextView)findViewById(R.id.labelText);
         Intent intent = getIntent();
         int id   ;
-        String name ;
         id = intent.getIntExtra("id" , -1 ) ;
-        name = intent.getStringExtra("name");
-        tv_hint.setText("id is " + id  + "name :: " + name );
+        tv_hint.setText("Welcome Student No."+id );
 
     }
 }

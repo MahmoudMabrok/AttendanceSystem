@@ -1,6 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="16dp"
@@ -8,11 +10,24 @@
 
     <!-- Include other widget or layout tags here. These are considered
             "child views" or "children" of the linear layout -->
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/labelText"
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:background="@android:color/background_light"
         android:text="@string/label_text"
-        android:id="@+id/labelText"/>
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="248dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Join Session"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
 
 </LinearLayout>
