@@ -48,7 +48,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
         android:background="@android:color/background_light"
-        android:text="Contact The Lecturer If Wrong Academic Number Is Entered"
+        android:text="Contact The Lecturer If Wrong Academic Number Was Entered"
         android:textAlignment="center" />
 
 </RelativeLayout>
