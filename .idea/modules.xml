@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AttendanceSystem.iml" filepath="$PROJECT_DIR$/AttendanceSystem.iml" />
-      <module fileurl="file://C:\Users\Mansour\Desktop\AttendanceSystem\AttendandSystem.iml" filepath="C:\Users\Mansour\Desktop\AttendanceSystem\AttendandSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AttendandSystem.iml" filepath="$PROJECT_DIR$/AttendandSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Mansour/Desktop/AttendanceSystem/AttendandSystem.iml" filepath="$PROJECT_DIR$/../../../Mansour/Desktop/AttendanceSystem/AttendandSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

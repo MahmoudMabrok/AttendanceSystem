@@ -25,9 +25,7 @@ import static android.R.id.message;
 public class LogIn extends Activity {
 
     private  int id  = -1 ;
-    private  final int adminDefaultPassword = 0000;
-    //private  String name ;
-
+    private  final int adminDefaultPassword = 0;
 
 
     @Override
@@ -66,7 +64,7 @@ public class LogIn extends Activity {
 
             //start activity
 
-            if (id == 1111) {
+            if (id == 0) {
                 startNewActivity(1);
             } else
                 startNewActivity(0);
