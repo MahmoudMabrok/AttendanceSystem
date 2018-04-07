@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-
+// Is the main activity needed ?
 public class MainActivity extends Activity {
 
     TextView tv_hint ;
