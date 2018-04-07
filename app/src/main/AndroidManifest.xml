@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Student"/>
-        <activity android:name=".Admin"/>
     </application>
 
 </manifest>
