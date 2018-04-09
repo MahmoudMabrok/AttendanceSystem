@@ -48,16 +48,12 @@ public class LogIn extends Activity {
 
         int n  = 0 ;
         try {
-            //name = userName.getText().toString() ;
-            //editor.putString("name",name);
-            n = Integer.parseInt(input.getText().toString()) ;
+            n = Integer.parseInt(input.getText().toString());
             id = n;
-            Log.v("LogIn", "n " + n);
             editor.putInt("ID", n);
             editor.apply();
-
             //start activity
-                startNewActivity();
+            startNewActivity();
 
         }catch (NullPointerException e ){
             Toast.makeText(this , "Enter A Valid Academic Number (7 Numbers)" ,Toast.LENGTH_LONG ).show();
@@ -72,19 +68,15 @@ public class LogIn extends Activity {
             Log.v("LogIn"  ," from get id is " + id) ;
             SharedPreferences shared = getSharedPreferences("UserData", Context.MODE_PRIVATE);
             id = shared.getInt("ID", -1);
-            //name = shared.getString("name" , "") ;
-
             Log.v("LogIn"  ," after get id is " + id) ;
         }catch (Exception e){
             id = -1 ;
-            //name = "" ;
         }
     }
     public void startNewActivity(){
         Intent intent ;
         intent = new Intent(this ,Student.class) ;
         intent.putExtra("id", id);
-        //intent.putExtra("name", name );
         startActivity(intent);
         finish();
     }
