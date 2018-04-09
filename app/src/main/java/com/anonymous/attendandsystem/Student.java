@@ -31,12 +31,12 @@ public class Student  extends Activity  {
                 if (wifi.isWifiEnabled() == false) {
                     Toast.makeText(getApplicationContext(), "Connecting...", Toast.LENGTH_LONG).show();
                     wifi.setWifiEnabled(true);
-                }
+                    }
+                Toast.makeText(Student.this, wifi.getConnectionInfo().getMacAddress().toString(), Toast.LENGTH_SHORT).show();
+
             }
             });
-
-
-
+        
 
 
         TextView   tv_hint = (TextView)findViewById(R.id.labelText);
