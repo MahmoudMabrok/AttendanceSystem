@@ -22,10 +22,10 @@
         tools:layout_editor_absoluteY="248dp" />
 
     <Button
-        android:id="@+id/btnJoin"
+        android:id="@+id/btnScan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Join Session"
+        android:text="Scan"
         android:textAlignment="center"
         android:textSize="24sp" />
 

@@ -25,7 +25,7 @@ import static android.R.id.message;
 public class LogIn extends Activity {
 
     private  int id  = -1 ;
-    private  final int adminDefaultPassword = 0;
+
 
 
     @Override
@@ -35,11 +35,7 @@ public class LogIn extends Activity {
         getData();
         Log.v("LogIn"  ,"before if  " + id) ;
         if (id != -1) {
-            if (id == adminDefaultPassword)
-                startNewActivity(1);
-            else
-                startNewActivity(0);
-
+            startNewActivity();
         }
         Log.v("LogIn"  ,"After if " + id) ;
     }
@@ -48,8 +44,6 @@ public class LogIn extends Activity {
         SharedPreferences shared = getSharedPreferences("UserData" , Context.MODE_PRIVATE) ;
         SharedPreferences.Editor editor = shared.edit() ;
         EditText input = (EditText)findViewById(R.id.password) ;
-        //EditText userName = (EditText)findViewById(R.id.userName) ;
-        //ToggleButton isAdmin = (ToggleButton) findViewById(R.id.toggleButton);
 
 
         int n  = 0 ;
@@ -63,11 +57,7 @@ public class LogIn extends Activity {
             editor.apply();
 
             //start activity
-
-            if (id == 0) {
-                startNewActivity(1);
-            } else
-                startNewActivity(0);
+                startNewActivity();
 
         }catch (NullPointerException e ){
             Toast.makeText(this , "Enter A Valid Academic Number (7 Numbers)" ,Toast.LENGTH_LONG ).show();
@@ -90,13 +80,9 @@ public class LogIn extends Activity {
             //name = "" ;
         }
     }
-    public void startNewActivity( int priority ){
+    public void startNewActivity(){
         Intent intent ;
-        if (priority  == 1 )
-            intent = new Intent(this,Admin.class);
-        else
-            intent = new Intent(this ,Student.class) ;
-
+        intent = new Intent(this ,Student.class) ;
         intent.putExtra("id", id);
         //intent.putExtra("name", name );
         startActivity(intent);
