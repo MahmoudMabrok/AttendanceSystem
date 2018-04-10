@@ -1,12 +1,17 @@
 package com.anonymous.attendandsystem;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
@@ -34,7 +39,14 @@ public class Student extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student);
 
-        Button btnScan = (Button) findViewById(R.id.btnScan);
+        //Background gradient animation
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.layout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) linearLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(4000);
+        animationDrawable.setExitFadeDuration(4000);
+        animationDrawable.start();
+
+        ImageButton btnScan = (ImageButton) findViewById(R.id.btnScan);
         final Activity ACTIVITY = this;
         helper = new DBHelper(this);
         TextView tv_hint = (TextView) findViewById(R.id.labelText);

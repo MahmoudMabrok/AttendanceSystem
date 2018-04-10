@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_list"
+    android:id="@+id/layout"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="16dp"
@@ -15,24 +17,31 @@
         android:id="@+id/labelText"
         android:layout_width="match_parent"
         android:layout_height="83dp"
-        android:background="@android:color/background_light"
+        android:background="#00ffffff"
+        android:fontFamily="@font/fedra"
         android:text="@string/label_text"
         android:textAlignment="center"
+        android:textColor="#FF0E1640"
+        android:textSize="20sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="248dp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnScan"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:background="@drawable/btnbackground"
+        android:src="@drawable/ic_camera_alt_black_24dp"
+         />
+
+
 
     <Button
         android:id="@+id/showAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/showAll" />
+        android:text="@string/showAll"
+        android:visibility="invisible" />
 
 </LinearLayout>

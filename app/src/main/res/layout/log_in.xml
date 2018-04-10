@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="#303030"
     android:orientation="vertical">
 
     <EditText
@@ -14,18 +14,25 @@
         android:layout_centerVertical="true"
         android:ems="10"
         android:hint="Enter Your Academic Number"
+        android:background="@android:color/transparent"
+        android:textColorHint="#ffffff"
         android:inputType="textPassword"
         android:textAlignment="center" />
 
     <Button
         android:id="@+id/enter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="164dp"
+        android:layout_height="38dp"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="42dp"
+        android:background="#49494e"
+        android:fontFamily="@font/fedra"
         android:onClick="saveData"
-        android:text="LogIn" />
+        android:text="LogIn"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView"
@@ -34,11 +41,14 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="101dp"
-        android:background="@android:color/background_light"
-        android:text="Welcome To AttendIT"
+        android:autoText="false"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/fedra"
+        android:text="AttendIT"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="36sp" />
+        android:textColor="#ffffff"
+        android:textSize="56sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView2"
@@ -47,8 +57,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
-        android:background="@android:color/background_light"
+        android:background="@android:color/transparent"
         android:text="Contact The Lecturer If Wrong Academic Number Was Entered"
+        android:textColor="#ffffff"
         android:textAlignment="center" />
 
 </RelativeLayout>
