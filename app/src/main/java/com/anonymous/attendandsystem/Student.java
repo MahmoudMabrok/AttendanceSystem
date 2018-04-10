@@ -73,8 +73,11 @@ public class Student extends Activity {
                     Toast.makeText(ACTIVITY, "* " + data.get(i), Toast.LENGTH_SHORT).show();
                 }
                 //add child for every student , each one has child subjects , that have all attendances ;
-                myRef.child("subjects").setValue(data);
+                //myRef.child("subjects").setValue(data); //// TODO: 4/10/2018 ddd
+                myRef.setValue(data);
                 Toast.makeText(ACTIVITY, "Added", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Student.this, ShowData.class);
+                startActivity(i);
             }
         });
     }
