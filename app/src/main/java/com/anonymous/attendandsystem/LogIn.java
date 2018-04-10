@@ -23,10 +23,7 @@ import static android.R.id.message;
 
 
 public class LogIn extends Activity {
-
     private  int id  = -1 ;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +72,12 @@ public class LogIn extends Activity {
     }
     public void startNewActivity(){
         Intent intent ;
-        intent = new Intent(this ,Student.class) ;
-        intent.putExtra("id", id);
+        if (id == 50) {
+            intent = new Intent(this, ShowData.class);
+        } else {
+            intent = new Intent(this, Student.class);
+            intent.putExtra("id", id);
+        }
         startActivity(intent);
         finish();
     }
