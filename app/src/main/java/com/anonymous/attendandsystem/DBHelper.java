@@ -25,9 +25,11 @@ public class DBHelper extends SQLiteOpenHelper {
             + Attend.ATTEND_COLUMN_CODE + TYPE + "PRIMARY KEY  );";
 
     public static final String DELETE_COMMAND = "DROP TABLE IF EXISTS " + Attend.ATTEND_TABLE_NAME;
-    
+
+    Context context;
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -65,11 +67,9 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + Attend.ATTEND_TABLE_NAME, null);
-
         while (c.moveToNext()) {
             list.add(c.getString(1));
         }
-        list.add("" + c.getCount());
         c.close();
 
         return list;

@@ -11,8 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
 
 public class Student extends Activity {
 
@@ -21,6 +25,9 @@ public class Student extends Activity {
     String contentQr;
     DBHelper helper;
     Button show ;
+    ArrayList<String> data = new ArrayList<>();
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,10 @@ public class Student extends Activity {
         id = intent.getIntExtra("id", -1);
         tv_hint.setText("Welcome Student No." + id);
 
+        // Write a message to the database
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("" + id);
+
         btnScan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(ACTIVITY);
@@ -47,13 +58,23 @@ public class Student extends Activity {
             }
         });
         show  = (Button)findViewById(R.id.showAll) ;
+
+        // show all recorded code that are ready to send to database
         show.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "ere " + id, Toast.LENGTH_SHORT).show();
-                for(String w : helper.getAllCodes())
-                    Toast.makeText(getApplicationContext() ,w,Toast.LENGTH_LONG);
-                Toast.makeText(ACTIVITY, "cccd", Toast.LENGTH_SHORT).show();
+                id++;
+                //first clear data
+                data.clear();
+                //then add all from db
+                data.addAll(helper.getAllCodes());
+                //show every code in data
+                for (int i = 0; i < data.size(); i++) {
+                    Toast.makeText(ACTIVITY, "* " + data.get(i), Toast.LENGTH_SHORT).show();
+                }
+                //add child for every student , each one has child subjects , that have all attendances ;
+                myRef.child("subjects").setValue(data);
+                Toast.makeText(ACTIVITY, "Added", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -67,10 +88,11 @@ public class Student extends Activity {
             } else {
                 contentQr = intentResult.getContents();
                 status = helper.addCode(id, contentQr);
+              /*  myRef.setValue(contentQr);*/
                 if (status != -1)
                     Toast.makeText(this, contentQr, Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(this, "error ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Erro . you attend it", Toast.LENGTH_LONG).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
