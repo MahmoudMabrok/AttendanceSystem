@@ -24,6 +24,7 @@ import static android.R.id.message;
 
 public class LogIn extends Activity {
     private  int id  = -1 ;
+    final int ADMIN_ID =0000000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,17 @@ public class LogIn extends Activity {
 
         int n  = 0 ;
         try {
-            n = Integer.parseInt(input.getText().toString());
-            id = n;
-            editor.putInt("ID", n);
-            editor.apply();
-            //start activity
-            startNewActivity();
+            if (input.getText().toString().length() < 7) {
+                Toast.makeText(this , "Enter A Valid Academic Number (7 Numbers)" ,Toast.LENGTH_LONG ).show();
+            }
+            else {
+                n = Integer.parseInt(input.getText().toString());
+                id = n;
+                editor.putInt("ID", n);
+                editor.apply();
+                //start activity
+                startNewActivity();
+            }
 
         }catch (NullPointerException e ){
             Toast.makeText(this , "Enter A Valid Academic Number (7 Numbers)" ,Toast.LENGTH_LONG ).show();
@@ -72,7 +78,7 @@ public class LogIn extends Activity {
     }
     public void startNewActivity(){
         Intent intent ;
-        if (id == 50) {
+        if (id == ADMIN_ID) {
             intent = new Intent(this, ShowData.class);
         } else {
             intent = new Intent(this, Student.class);

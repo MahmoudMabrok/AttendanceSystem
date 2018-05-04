@@ -14,12 +14,11 @@
         <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Student" />
-        <activity android:name=".ShowData"></activity>
+        <activity android:name=".ShowData" />
     </application>
 
 </manifest>

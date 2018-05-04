@@ -16,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -27,6 +30,7 @@ public class Student extends Activity {
 
     int id;
     long status;
+    final int ATTENDANCE_CODE = 0000;
     String contentQr;
     DBHelper helper;
     Button show ;
@@ -40,11 +44,11 @@ public class Student extends Activity {
         setContentView(R.layout.student);
 
         //Background gradient animation
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.layout);
+        /*LinearLayout linearLayout = (LinearLayout) findViewById(R.id.layout);
         AnimationDrawable animationDrawable = (AnimationDrawable) linearLayout.getBackground();
         animationDrawable.setEnterFadeDuration(4000);
         animationDrawable.setExitFadeDuration(4000);
-        animationDrawable.start();
+        animationDrawable.start();*/
 
         ImageButton btnScan = (ImageButton) findViewById(R.id.btnScan);
         final Activity ACTIVITY = this;
@@ -100,16 +104,56 @@ public class Student extends Activity {
             //You should send his id to the server here instead of that toast
             if (intentResult.getContents() == null) {
                 Toast.makeText(this, "You cancelled the scanning", Toast.LENGTH_LONG).show();
-            } else {
-                contentQr = intentResult.getContents();
+            }
+
+            else if(Integer.parseInt(intentResult.getContents()) == ATTENDANCE_CODE ) {
+                /*the value of the child Number of attendance should be read from the firebase first and incremented as the commented
+                code below, it shouldn't be static-> 0*/
+                myRef.child("Number of attendance").setValue(0);
+                Toast.makeText(this, "You attended the class", Toast.LENGTH_LONG).show();
+
+
+
+
+/*
+This was suppose to make a read the value of each child which is their attendance counter and increment it
+It gives a run time error
+Will be checked later
+
+                DatabaseReference numberOfAttendance = myRef.child(String.valueOf(id)).child("Number of attendance");
+                numberOfAttendance.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String numberOfAttendanceCounter = dataSnapshot.getValue(String.class);
+                        if(numberOfAttendanceCounter=="null")
+                            numberOfAttendanceCounter="0";
+                        integerNumberOfAttendanceCounter=Integer.parseInt(numberOfAttendanceCounter)+1;
+                        myRef.child(String.valueOf(id)).child("Number of attendance").setValue(integerNumberOfAttendanceCounter);
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                Toast.makeText(this, "You attended the class", Toast.LENGTH_LONG).show();
+*/
+
+
+
+
+                /*contentQr = intentResult.getContents();
                 status = helper.addCode(id, contentQr);
-              /*  myRef.setValue(contentQr);*/
+
                 if (status != -1)
                     Toast.makeText(this, contentQr, Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(this, "Erro . you attend it", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Error . you attend it", Toast.LENGTH_LONG).show();*/
             }
-        } else {
+            else
+                Toast.makeText(this, "Wrong QR code!", Toast.LENGTH_LONG).show();
+
+        }
+        else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
